@@ -1,9 +1,30 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
 plugins {
     id 'java'
-    id 'application'
+    id 'war'
+    id 'org.akhikhl.gretty'
 }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
 
 apply from : 'lib.gradle'
 
+gretty {
+    httpPort = 8080
+    contextPath = '/'
+    servletContainer = 'jetty9'
+}
+
 // Define the main class for the application
-mainClassName = 'App'
+//mainClassName = 'App'
